@@ -1,0 +1,202 @@
+<div class="hero">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5">
+        <div class="intro-excerpt">
+          <h1>Thanh toán</h1>
+        </div>
+      </div>
+      <div class="col-lg-7">
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Hero Section -->
+
+<div class="untree_co-section">
+  <div class="container">
+    <div class="row mb-5">
+      {{#if checklogin}}
+        <div class="col-md-12">
+          <div class="border p-4 rounded" role="alert">
+            Returning customer?
+            <a href="#">Click here</a>
+            to login
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-5 mb-md-0">
+        <h2 class="h3 mb-3 text-black">Đơn hàng của bạn</h2>
+        <div class="p-3 p-lg-5 border bg-white">
+<form action="/thanhtoan/checkout" method="post">
+  
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="c_fname" class="text-black">Họ đệm
+                <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="c_fname"
+                name="FirstName"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="c_lname" class="text-black">
+                Tên
+                <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="c_lname"
+                name="LastName"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="c_country" class="text-black">Thành Phố
+              <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="c_country"
+              name="thanhpho"
+            />
+
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-12">
+              <label for="c_address" class="text-black">Huyện
+                <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="c_address"
+                name="huyen"
+                placeholder="Nhập tên huyện"
+              />
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="c_address" class="text-black">Xã
+              <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nhập tên xã"
+              name="xa"
+            />
+          </div>
+          <div class="form-group mt-3">
+            <label for="c_address" class="text-black">Địa chỉ đầy đủ
+              <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nhập địa chỉ"
+              name="xa"
+            />
+          </div>
+          <div class="form-group mt-3">
+            <label for="c_address" class="text-black">Số điện thoại
+              <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nhập số điện thoại"
+              name="phone"
+            />
+          </div>
+
+        
+          <div class="form-group">
+            <label for="c_order_notes" class="text-black">Ghi chú</label>
+            <textarea
+              name="c_order_notes"
+              id="c_order_notes"
+              cols="30"
+              rows="5"
+              class="form-control"
+              placeholder="Viết ghi chú"
+            ></textarea>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Mã giảm giá</h2>
+            <div class="p-3 p-lg-5 border bg-white">
+
+              <label for="c_code" class="text-black mb-3">Nhập mã giảm giá</label>
+              <div class="input-group w-75 couponcode-wrap">
+                <input
+                  type="text"
+                  class="form-control me-2"
+                  id="c_code"
+                  placeholder="Chức năng này đang phát triển"
+                  aria-label="Coupon Code"
+                  aria-describedby="button-addon2"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-black btn-sm"
+                    type="button"
+                    id="button-addon2"
+                  >Apply</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Đơn của bạn </h2>
+            <div class="p-3 p-lg-5 border bg-white">
+              <table class="table site-block-order-table mb-5">
+                <thead>
+                  <th>Sản phẩm</th>
+                  <th>Tổng</th>
+                </thead>
+                <tbody>
+				  {{#each cart}}
+                  <tr>
+                    <td>{{this.brand}} {{this.model}}<strong class="mx-2">x</strong> {{this.quantity}}</td>
+                    <td>{{this.price}}VND</td>
+                  </tr>
+                 {{/each}}
+
+                  <tr>
+                    <td class="text-black font-weight-bold"><strong>Tổng tiền</strong></td>
+                    <td class="text-black font-weight-bold"><strong
+                      >{{totalprice}}</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="form-group">
+                <button
+                  class="btn btn-black btn-lg py-3 btn-block"
+                  onclick="window.location='thankyou.html'"
+                >Đặt hàng</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+</form>
+    </div>
+    <!-- </form> -->
+  </div>
+</div>
